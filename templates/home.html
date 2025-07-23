@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About the website</title>
+</head>
+<body>
+    <div class="container" style="text-align: center;">
+        {% include 'navbar.html' %}
+        <h1>This is our home page</h1>
+        <form action="/index/" method="POST">
+            {% csrf_token %}
+            <input type="checkbox" value="True" name="msg">
+            <button type="submit">Send</button>
+        </form>
+        <p>
+            Get your tab groups on the go
+            Just like your bookmarks and passwords, your tab groups are now available across all your devices. Get started on one device and pick up your project on another device.
+
+            To start seeing your tab groups across devices:
+
+            Sign in and create a tab group on your computer or phone.
+            Your tab group will automatically save to your account.
+            Open your group on a different device.
+            Mobile: go to your open tabs, click the tab group section .
+
+            Desktop: click the tab group icon  in your bookmarks bar (if open) or the Chrome menu.
+        </p>
+        <button class="btn btn-primary">Contact Us</button>
+        {% if isActive %}
+            <div>
+                <hr>
+                <h1>Message is {{ msg }}</h1>
+                <h1>Today date is {{ date }}</h1>
+                <h1>Name is {{name}}</h1>
+                <hr>
+                <h1>Student Data</h1>
+                <h2>Student Name : {{student_data.name}}</h2>
+                <h2>Student Roll Number : {{student_data.roll_no}}</h2>
+                <h2>Student College : {{student_data.college}}</h2>
+                <h2>Student City : {{student_data.city}}</h2>
+                <hr>
+                <h1>Your Favrout Program</h1>
+                {% for program in list_of_programs %}
+                    <h3>{{program}}</h3>
+                {% endfor%}
+            </div>
+        {% endif %}
+    </div>
+    
+</body>
+</html>
